@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OdinCalc | Futuristic Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="app-container">
+      <div class="holographic-effect"></div>
+      <div class="calculator-container">
+        <div class="branding">
+          <div class="logo">ODIN</div>
+          <div class="model">CALC-X9000</div>
+          <button class="theme-toggle">🌓</button>
+        </div>
+
+        <div class="display">
+          <div class="memory-indicators">
+            <span class="error-indicator" id="error-indicator">E</span>
+          </div>
+          <div class="screen">
+            <div class="display-text history" id="history"></div>
+            <div class="display-text current" id="current">0</div>
+          </div>
+        </div>
+
+        <div class="keypad">
+          <div class="function-keys">
+            <button class="btn fn-btn" data-action="clear">C</button>
+            <button class="btn fn-btn" data-action="delete">⌫</button>
+          </div>
+
+          <div class="main-keys">
+            <button class="btn num-btn" data-value="7">7</button>
+            <button class="btn num-btn" data-value="8">8</button>
+            <button class="btn num-btn" data-value="9">9</button>
+            <button class="btn op-btn" data-action="divide">÷</button>
+
+            <button class="btn num-btn" data-value="4">4</button>
+            <button class="btn num-btn" data-value="5">5</button>
+            <button class="btn num-btn" data-value="6">6</button>
+            <button class="btn op-btn" data-action="multiply">×</button>
+
+            <button class="btn num-btn" data-value="1">1</button>
+            <button class="btn num-btn" data-value="2">2</button>
+            <button class="btn num-btn" data-value="3">3</button>
+            <button class="btn op-btn" data-action="subtract">−</button>
+
+            <button class="btn num-btn" data-value="0">0</button>
+            <button class="btn num-btn" data-value=".">.</button>
+            <button class="btn equals-btn" data-action="calculate">=</button>
+            <button class="btn op-btn" data-action="add">+</button>
+          </div>
+
+          <div class="scientific-keys">
+            <button class="btn sci-btn" data-action="square">x²</button>
+            <button class="btn sci-btn" data-action="squareRoot">√</button>
+            <button class="btn sci-btn" data-action="power">x^y</button>
+            <button class="btn sci-btn" data-action="inverse">1/x</button>
+            <div class="scientific-row-2">
+              <button class="btn sci-btn" data-action="modulus">mod</button>
+              <button class="btn sci-btn" data-action="percentage">%</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
