@@ -4,6 +4,9 @@ const calculator = {
   operation: null,
   waitingForOperand: false,
   decimalEntered: false,
+  lastOperation: null,
+  lastOperand: null,
+  justCalculated: false,
 };
 
 const elements = {
@@ -77,6 +80,11 @@ function handleButtonClick() {
   setTimeout(() => this.classList.remove("active"), 150);
 
   const { action, value } = this.dataset;
+
+  if (action !== "calculate") {
+    calculator.justCalculated = false;
+  }
+
   if (value) handleNumberInput(value);
   else if (action === "calculate") {
     performCalculation();
@@ -156,6 +164,16 @@ function handleOperator(action) {
 }
 
 function performCalculation() {
+  if (
+    calculator.justCalculated &&
+    calculator.lastOperation &&
+    !calculator.waitingForOperand
+  ) {
+    calculator.previousValue = calculator.currentValue;
+    calculator.operation = calculator.lastOperation;
+    calculator.currentValue = calculator.lastOperand || calculator.currentValue;
+  }
+
   if (!calculator.operation) return;
 
   const prev = parseFloat(calculator.previousValue || calculator.currentValue);
@@ -198,9 +216,16 @@ function performCalculation() {
     const isUnary = ["square", "squareRoot", "inverse"].includes(
       calculator.operation
     );
+
+    if (!isUnary) {
+      calculator.lastOperation = calculator.operation;
+      calculator.lastOperand = current.toString();
+    }
+
     calculator.previousValue = isUnary ? null : calculator.previousValue;
     calculator.operation = isUnary ? null : calculator.operation;
     calculator.waitingForOperand = false;
+    calculator.justCalculated = true;
   } catch (error) {
     showError(error.message);
   }
@@ -213,6 +238,9 @@ function clearCalculator() {
     operation: null,
     waitingForOperand: false,
     decimalEntered: false,
+    lastOperation: null,
+    lastOperand: null,
+    justCalculated: false,
   });
   hideError();
 }
